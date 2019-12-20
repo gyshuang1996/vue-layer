@@ -68,8 +68,8 @@ let Notification = (function (Vue, globalOption = {
       'iframe': '',
     }
     if (options.shade) { //是否显示遮罩
-      let layerMask = document.querySelector('.vl-notify-mask');
-      if (layerMask) {
+      // let layerMask = document.querySelector('.vl-notify-mask');
+      /* if (layerMask) {
         // return;
         // document.body.removeChild(layerMask);
       } else {
@@ -80,7 +80,16 @@ let Notification = (function (Vue, globalOption = {
         // document.body.appendChild(maskInstance.vm.$el);
         document.body.insertBefore(maskInstance.vm.$el, instance.vm.$el);
         self.instancesVue[id].mask = maskInstance.vm;
-      }
+      } */
+  
+        let maskInstance = new maskLayer({
+          data: options
+        });
+        maskInstance.vm = maskInstance.$mount();
+        // document.body.appendChild(maskInstance.vm.$el);
+        document.body.insertBefore(maskInstance.vm.$el, instance.vm.$el);
+        self.instancesVue[id].mask = maskInstance.vm;
+  
     }
     return id;
   };
@@ -256,13 +265,13 @@ let Notification = (function (Vue, globalOption = {
    */
   self.close = function (id) {
     let oElm = document.getElementById(id);
-    // let layerMask = document.getElementById(id + '_mask');
-    // if (layerMask) {
-    //   document.body.removeChild(layerMask);
-    //   if (self.instancesVue[id].mask) {
-    //     self.instancesVue[id].mask.$destroy();
-    //   }
-    // }
+    /* let layerMask = document.getElementById(id + '_mask');
+    if (layerMask) {
+      document.body.removeChild(layerMask);
+      if (self.instancesVue[id].mask) {
+        self.instancesVue[id].mask.$destroy();
+      }
+    } */
     if (oElm) {
       document.body.removeChild(oElm);
       delete self.instances[id];
@@ -286,20 +295,28 @@ let Notification = (function (Vue, globalOption = {
       }
       //控制遮罩
       if (self.instancesVue[id].main.shade) {
-        let domCount = 0;
-        for (let key in self.instancesVue) {
-          if (self.instancesVue[key].main.shade) {
-            domCount++;
+        // let domCount = 0;
+        // for (let key in self.instancesVue) {
+        //   if (self.instancesVue[key].main.shade) {
+        //     domCount++;
+        //   }
+        // }
+        // if (domCount === 1) {
+          let layerMask = document.getElementById(id + "_mask");
+          if (layerMask) {
+            document.body.removeChild(layerMask);
+            if (self.instancesVue[id].mask) {
+              self.instancesVue[id].mask.$destroy();
+            }
           }
-        }
-        if (domCount === 1) {
-          let layerMask = document.getElementsByClassName('vl-notify-mask')[0];
-          let maskId = layerMask.getAttribute('id').replace('_mask', '');
-          document.body.removeChild(layerMask);
-          if (self.instancesVue[maskId]) {
-            self.instancesVue[maskId].mask.$destroy();
-          }
-        }
+
+          // let layerMask = document.getElementsByClassName('vl-notify-mask')[0];
+          // let maskId = layerMask.getAttribute('id').replace('_mask', '');
+          // document.body.removeChild(layerMask);
+          // if (self.instancesVue[maskId]) {
+          //   self.instancesVue[maskId].mask.$destroy();
+          // }
+        // }
       }
       delete self.instancesVue[id];
     } else {

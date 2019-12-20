@@ -49,11 +49,13 @@
 <el-form-item>
   <el-button type="primary" @click="onSubmit">立即创建</el-button>
   <el-button @click="quxiao">取消</el-button>
+  <el-button @click="btn">测试</el-button>
 </el-form-item>
 </el-form>
 </template>
 
 <script>
+import testBtn  from "./test"
 export default {
   data() {
     return {
@@ -92,6 +94,25 @@ export default {
     }
   },
   methods: {
+    btn() {
+this.$layer.iframe({
+        content: {
+          content: testBtn,
+          parent: this,
+          data: { info: this.info }
+        },
+        area: ["400px", "300px"],
+        title: "这是一个标题这是一个标题这是一个标题这是一个标题",
+        maxmin: true,
+        shade: true,
+        shadeClose: false,
+        scrollbar: false,
+        resize: true,
+        cancel: () => {
+          alert(2110);
+        }
+      });
+    },
     onSubmit() {
       // console.log("submit!");
       // alert(JSON.stringify(this.form));

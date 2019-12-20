@@ -11,19 +11,7 @@
     <el-button type="primary" @click="loadingHandle">默认样式</el-button>
     <h2 class="title">prompt</h2>
     <el-button type="primary" @click="promptHandle">弹出</el-button>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+
     <h2 class="title">tips</h2>
     <el-button type="primary" id="tips" @click="tipsHandle">上</el-button>
     <el-button type="primary" id="tips1" @mouseenter.native="tips1Handle">右</el-button>
@@ -33,7 +21,7 @@
     {{this.info}}
     <el-button type="primary" id="tips" @click="pageHandle">自定义</el-button>
     <br />
-    <br />
+     <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br /> <br />
     <h2 class="title">表格测试</h2>
     <el-table :data="tableData" style="width: 100%" border>
       <el-table-column label="日期" width="180">

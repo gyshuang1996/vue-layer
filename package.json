@@ -1,5 +1,5 @@
 {
-  "name": "vue-layer",
+  "name": "vue-layer-shadow",
   "version": "1.1.7",
   "description": "vue layer component",
   "private": false,
@@ -59,7 +59,7 @@
     "vue-layer",
     "zuoyan"
   ],
-  "author": "左盐/huabinglan@163.com",
+  "author": "gys 借用了作者左盐/huabinglan@163.com的代码,修改了弹层的shadow",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zuoyanart/vue-layer/issues"
